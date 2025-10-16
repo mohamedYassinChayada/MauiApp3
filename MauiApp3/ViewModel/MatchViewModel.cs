@@ -29,13 +29,13 @@ namespace MauiApp3.ViewModel
             {
                 new Match { MatchNumber = "Match 1", TeamA = "Team A", TeamB = "Team B", Result = MatchResult.TeamAWon },
                 new Match { MatchNumber = "Match 2", TeamA = "Team A", TeamB = "Team B", Result = MatchResult.TeamBWon },
-                new Match { MatchNumber = "Match 3", TeamA = "Team A", TeamB = "Team B", Result = MatchResult.Pending },
+                new Match { MatchNumber = "Match 3", TeamA = "Team A", TeamB = "Team B", Result = MatchResult.Null },
                 new Match { MatchNumber = "Match 4", TeamA = "Team A", TeamB = "Team B", Result = MatchResult.TeamAWon },
-                new Match { MatchNumber = "Match 5", TeamA = "Team A", TeamB = "Team B", Result = MatchResult.Pending },
+                new Match { MatchNumber = "Match 5", TeamA = "Team A", TeamB = "Team B", Result = MatchResult.Null },
                 new Match { MatchNumber = "Match 6", TeamA = "Team A", TeamB = "Team B", Result = MatchResult.TeamBWon },
                 new Match { MatchNumber = "Match 7", TeamA = "Team A", TeamB = "Team B", Result = MatchResult.TeamAWon },
                 new Match { MatchNumber = "Match 8", TeamA = "Team A", TeamB = "Team B", Result = MatchResult.TeamBWon },
-                new Match { MatchNumber = "Match 9", TeamA = "Team A", TeamB = "Team B", Result = MatchResult.Pending },
+                new Match { MatchNumber = "Match 9", TeamA = "Team A", TeamB = "Team B", Result = MatchResult.Null },
                 new Match { MatchNumber = "Match 10", TeamA = "Team A", TeamB = "Team B", Result = MatchResult.TeamAWon }
             };
 

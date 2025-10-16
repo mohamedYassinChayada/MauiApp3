@@ -37,7 +37,7 @@ namespace MauiApp3.Converters
 
             if (param == "ResultColor")
             {
-                if (result == MatchResult.Pending)
+                if (result == MatchResult.Null)
                     return Colors.Red;
                 else
                     return Colors.Black;

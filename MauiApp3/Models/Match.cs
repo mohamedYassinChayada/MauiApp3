@@ -2,7 +2,7 @@ namespace MauiApp3.Models
 {
     public enum MatchResult
     {
-        Pending,
+        Null,
         TeamAWon,
         TeamBWon
     }
