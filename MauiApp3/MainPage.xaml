@@ -3,73 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converters="clr-namespace:MauiApp3.Converters"
              xmlns:viewmodel="clr-namespace:MauiApp3.ViewModel"
-             x:Class="MauiApp3.MainPage"
-             BackgroundColor="White">
+             x:Class="MauiApp3.MainPage">
 
     <ContentPage.BindingContext>
         <viewmodel:MatchViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:MatchResultConverter x:Key="MatchResultConverter" />
-        </ResourceDictionary>
+        <converters:MatchResultConverter x:Key="Converter" />
     </ContentPage.Resources>
 
-    <VerticalStackLayout Padding="20" Spacing="30" VerticalOptions="Center">
+    <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
         
-        <!-- Match Number -->
-        <Label 
-            Text="{Binding CurrentMatch.MatchNumber}"
-            FontSize="24"
-            FontAttributes="Bold"
-            TextColor="Black"
-            HorizontalOptions="Center"/>
+        <Label Text="{Binding CurrentMatch.MatchNumber}" 
+               FontSize="24" 
+               HorizontalOptions="Center"/>
 
-        <!-- Team A Box -->
-        <Frame 
-            BackgroundColor="{Binding CurrentMatch.Result, Converter={StaticResource MatchResultConverter}, ConverterParameter=TeamA}"
-            Padding="20"
-            CornerRadius="10"
-            BorderColor="Black">
-            <Label 
-                Text="{Binding CurrentMatch.TeamA}"
-                FontSize="32"
-                FontAttributes="Bold"
-                TextColor="Black"
-                HorizontalOptions="Center"/>
+        <Frame BackgroundColor="{Binding CurrentMatch.Result, Converter={StaticResource Converter}, ConverterParameter=TeamA}" 
+               Padding="20">
+            <Label Text="{Binding CurrentMatch.TeamA}" 
+                   FontSize="32" 
+                   HorizontalOptions="Center"/>
         </Frame>
 
-        <!-- VS Label -->
-        <Label 
-            Text="VS"
-            FontSize="28"
-            FontAttributes="Bold"
-            TextColor="Black"
-            HorizontalOptions="Center"/>
+        <Label Text="VS" 
+               FontSize="28" 
+               HorizontalOptions="Center"/>
 
-        <!-- Team B Box -->
-        <Frame 
-            BackgroundColor="{Binding CurrentMatch.Result, Converter={StaticResource MatchResultConverter}, ConverterParameter=TeamB}"
-            Padding="20"
-            CornerRadius="10"
-            BorderColor="Black">
-            <Label 
-                Text="{Binding CurrentMatch.TeamB}"
-                FontSize="32"
-                FontAttributes="Bold"
-                TextColor="Black"
-                HorizontalOptions="Center"/>
+        <Frame BackgroundColor="{Binding CurrentMatch.Result, Converter={StaticResource Converter}, ConverterParameter=TeamB}" 
+               Padding="20">
+            <Label Text="{Binding CurrentMatch.TeamB}" 
+                   FontSize="32" 
+                   HorizontalOptions="Center"/>
         </Frame>
 
-        <!-- Result Label -->
-        <Label 
-            Text="{Binding CurrentMatch.Result, Converter={StaticResource MatchResultConverter}, ConverterParameter=ResultText}"
-            TextColor="{Binding CurrentMatch.Result, Converter={StaticResource MatchResultConverter}, ConverterParameter=ResultColor}"
-            FontSize="24"
-            FontAttributes="Bold"
-            HorizontalOptions="Center"
-            Margin="0,20,0,0"/>
+        <Label Text="{Binding CurrentMatch.Result, Converter={StaticResource Converter}, ConverterParameter=ResultText}"
+               TextColor="{Binding CurrentMatch.Result, Converter={StaticResource Converter}, ConverterParameter=ResultColor}"
+               FontSize="24" 
+               HorizontalOptions="Center"/>
 
     </VerticalStackLayout>
 
