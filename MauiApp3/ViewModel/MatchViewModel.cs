@@ -26,7 +26,6 @@ namespace MauiApp3.ViewModel
 
         public MatchViewModel()
         {
-            // Initialize static list of 10 matches with different results
             _matches = new ObservableCollection<Match>
             {
                 new Match { MatchNumber = "Match 1", TeamA = "Team A", TeamB = "Team B", Result = MatchResult.TeamAWon },

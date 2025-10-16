@@ -12,10 +12,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:TeamAColorConverter x:Key="TeamAColorConverter" />
-            <converters:TeamBColorConverter x:Key="TeamBColorConverter" />
-            <converters:ResultToTextConverter x:Key="ResultToTextConverter" />
-            <converters:ResultLabelColorConverter x:Key="ResultLabelColorConverter" />
+            <converters:MatchResultConverter x:Key="MatchResultConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -31,7 +28,7 @@
 
         <!-- Team A Box -->
         <Frame 
-            BackgroundColor="{Binding CurrentMatch.Result, Converter={StaticResource TeamAColorConverter}}"
+            BackgroundColor="{Binding CurrentMatch.Result, Converter={StaticResource MatchResultConverter}, ConverterParameter=TeamA}"
             Padding="20"
             CornerRadius="10"
             BorderColor="Black">
@@ -53,7 +50,7 @@
 
         <!-- Team B Box -->
         <Frame 
-            BackgroundColor="{Binding CurrentMatch.Result, Converter={StaticResource TeamBColorConverter}}"
+            BackgroundColor="{Binding CurrentMatch.Result, Converter={StaticResource MatchResultConverter}, ConverterParameter=TeamB}"
             Padding="20"
             CornerRadius="10"
             BorderColor="Black">
@@ -67,8 +64,8 @@
 
         <!-- Result Label -->
         <Label 
-            Text="{Binding CurrentMatch.Result, Converter={StaticResource ResultToTextConverter}}"
-            TextColor="{Binding CurrentMatch.Result, Converter={StaticResource ResultLabelColorConverter}}"
+            Text="{Binding CurrentMatch.Result, Converter={StaticResource MatchResultConverter}, ConverterParameter=ResultText}"
+            TextColor="{Binding CurrentMatch.Result, Converter={StaticResource MatchResultConverter}, ConverterParameter=ResultColor}"
             FontSize="24"
             FontAttributes="Bold"
             HorizontalOptions="Center"
