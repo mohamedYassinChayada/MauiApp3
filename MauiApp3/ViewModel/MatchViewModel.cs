@@ -1,7 +1,6 @@
 using MauiApp3.Models;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace MauiApp3.ViewModel
 {
@@ -9,24 +8,24 @@ namespace MauiApp3.ViewModel
     {
         private Match _currentMatch;
         private int _currentIndex;
-        private readonly ObservableCollection<Match> _matches;
+        private List<Match> _matches;
         private System.Timers.Timer _timer;
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public Match CurrentMatch
         {
-            get => _currentMatch;
+            get { return _currentMatch; }
             set
             {
                 _currentMatch = value;
-                OnPropertyChanged();
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentMatch)));
             }
         }
 
         public MatchViewModel()
         {
-            _matches = new ObservableCollection<Match>
+            _matches = new List<Match>
             {
                 new Match { MatchNumber = "Match 1", TeamA = "Team A", TeamB = "Team B", Result = MatchResult.TeamAWon },
                 new Match { MatchNumber = "Match 2", TeamA = "Team A", TeamB = "Team B", Result = MatchResult.TeamBWon },
@@ -43,33 +42,21 @@ namespace MauiApp3.ViewModel
             _currentIndex = 0;
             _currentMatch = _matches[_currentIndex];
 
-            // Setup timer to change match every 3 seconds
             _timer = new System.Timers.Timer(3000);
             _timer.Elapsed += OnTimerElapsed;
-            _timer.AutoReset = true;
             _timer.Start();
         }
 
-        private void OnTimerElapsed(object? sender, System.Timers.ElapsedEventArgs e)
+        private void OnTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            _currentIndex = (_currentIndex + 1) % _matches.Count;
+            _currentIndex = _currentIndex + 1;
+            if (_currentIndex >= _matches.Count)
+                _currentIndex = 0;
             
-            // Update on UI thread
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 CurrentMatch = _matches[_currentIndex];
             });
-        }
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        ~MatchViewModel()
-        {
-            _timer?.Stop();
-            _timer?.Dispose();
         }
     }
 }

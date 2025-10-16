@@ -9,9 +9,9 @@ namespace MauiApp3.Models
 
     public class Match
     {
-        public string TeamA { get; set; } = string.Empty;
-        public string TeamB { get; set; } = string.Empty;
+        public string TeamA { get; set; }
+        public string TeamB { get; set; }
         public MatchResult Result { get; set; }
-        public string MatchNumber { get; set; } = string.Empty;
+        public string MatchNumber { get; set; }
     }
 }

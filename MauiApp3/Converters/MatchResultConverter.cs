@@ -5,45 +5,48 @@ namespace MauiApp3.Converters
 {
     public class MatchResultConverter : IValueConverter
     {
-        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is not MatchResult result || parameter is not string param)
-                return null;
+            MatchResult result = (MatchResult)value;
+            string param = parameter.ToString();
 
-            switch (param)
+            if (param == "TeamA")
             {
-                case "TeamA":
-                    return result switch
-                    {
-                        MatchResult.TeamAWon => Colors.LightGreen,
-                        _ => Colors.LightGray
-                    };
-
-                case "TeamB":
-                    return result switch
-                    {
-                        MatchResult.TeamBWon => Colors.LightGreen,
-                        _ => Colors.LightGray
-                    };
-
-                case "ResultText":
-                    return result switch
-                    {
-                        MatchResult.TeamAWon => "Team A Won",
-                        MatchResult.TeamBWon => "Team B Won",
-                        MatchResult.Pending => "NULL",
-                        _ => "Unknown"
-                    };
-
-                case "ResultColor":
-                    return result == MatchResult.Pending ? Colors.Red : Colors.Black;
-
-                default:
-                    return null;
+                if (result == MatchResult.TeamAWon)
+                    return Colors.LightGreen;
+                else
+                    return Colors.LightGray;
             }
+
+            if (param == "TeamB")
+            {
+                if (result == MatchResult.TeamBWon)
+                    return Colors.LightGreen;
+                else
+                    return Colors.LightGray;
+            }
+
+            if (param == "ResultText")
+            {
+                if (result == MatchResult.TeamAWon)
+                    return "Team A Won";
+                if (result == MatchResult.TeamBWon)
+                    return "Team B Won";
+                return "NULL";
+            }
+
+            if (param == "ResultColor")
+            {
+                if (result == MatchResult.Pending)
+                    return Colors.Red;
+                else
+                    return Colors.Black;
+            }
+
+            return null;
         }
 
-        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
